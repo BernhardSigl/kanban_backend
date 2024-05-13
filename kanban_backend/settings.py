@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-arm2^q5rlw%x1@5fj1(4vad&4z@h+_nzah)**z=r)kf!j7t6^r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # '127.0.0.1',
+    # 'localhost'
+]
 
 CORS_ALLOWED_ORIGINS =[
     'http://localhost:4200', # frontend added
@@ -45,7 +48,16 @@ INSTALLED_APPS = [
     'kanban' #added
 ]
 
+#added
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', #added
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
